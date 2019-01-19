@@ -92,15 +92,16 @@ public class NavigationActivity extends AppCompatActivity
             Intent intent = new Intent(this, MapsActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_slideshow) {
-
+            Intent intent = new Intent(this, AuthActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
         }
+//        } else if (id == R.id.nav_share) {
+//
+//        } else if (id == R.id.nav_send) {
+//
+//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
