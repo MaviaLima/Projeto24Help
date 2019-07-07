@@ -44,6 +44,8 @@ public class NavigationActivity extends AppCompatActivity
 
         if(savedInstanceState != null){
             getSupportFragmentManager().beginTransaction().add(R.id.iFrame, new MapsFragment()).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.iFrame, new CurriculoFragment()).commit();
+
         }
     }
 
@@ -86,7 +88,8 @@ public class NavigationActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_view) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.iFrame, new MapsFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.iFrame, new CurriculoFragment()).commit();
+
         } else if (id == R.id.nav_gallery) {
 
             Intent intent = new Intent(this, MapsActivity.class);

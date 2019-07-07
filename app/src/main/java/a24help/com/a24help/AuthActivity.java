@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
@@ -32,6 +34,9 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import a24help.com.a24help.dao.ConfigureFirebase;
+import a24help.com.a24help.entidade.Usuario;
 
 public class AuthActivity extends AppCompatActivity {
 
@@ -48,7 +53,7 @@ public class AuthActivity extends AppCompatActivity {
     // Google Sign In button .
     com.google.android.gms.common.SignInButton signInButton;
     // TextView to Show Login User Email and Name.
-    TextView LoginUserName, LoginUserEmail;
+    TextView LoginUserName, LoginUserEmail, telefone;
     ImageView ImagemUrl;
 
 
@@ -63,6 +68,7 @@ public class AuthActivity extends AppCompatActivity {
         LoginUserName = (TextView) findViewById(R.id.textViewName);
         LoginUserEmail = (TextView) findViewById(R.id.textViewEmail);
         ImagemUrl = (ImageView) findViewById(R.id.imageViewUrl);
+        telefone = (TextView) findViewById(R.id.textViewTelefone);
         signInButton = (com.google.android.gms.common.SignInButton) findViewById(R.id.sign_in_button);
 
         // Getting Firebase Auth Instance into firebaseAuth object.
@@ -109,6 +115,7 @@ public class AuthActivity extends AppCompatActivity {
 
             }
         });
+
 
     }
 
@@ -162,9 +169,13 @@ public class AuthActivity extends AppCompatActivity {
                             LoginUserEmail.setVisibility(View.VISIBLE);
                             LoginUserName.setVisibility(View.VISIBLE);
                             ImagemUrl.setVisibility(View.VISIBLE);
+                            telefone.setVisibility(View.VISIBLE);
+
 
                             // Setting up name into TextView.
                             LoginUserName.setText(firebaseUser.getDisplayName().toString());
+                            //telefone.setText(firebaseUser.getPhoneNumber().toString());
+
 
                             String imagem = firebaseUser.getPhotoUrl().toString();
                             ImagemUrl.setTag(imagem);
@@ -175,6 +186,7 @@ public class AuthActivity extends AppCompatActivity {
                             // Setting up Email into TextView.
                             LoginUserEmail.setText(firebaseUser.getEmail().toString());
 
+
                         } else {
                             Toast.makeText(AuthActivity.this, "Something Went Wrong", Toast.LENGTH_LONG).show();
                         }
@@ -184,27 +196,29 @@ public class AuthActivity extends AppCompatActivity {
 
     public void UserSignOutFunction() {
 
-        // Realiza o Logout do usuário.
-        firebaseAuth.signOut();
-        Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(
-                new ResultCallback<Status>() {
-                    @Override
-                    public void onResult(@NonNull Status status) {
-                        Toast.makeText(AuthActivity.this, "Logout Successfully", Toast.LENGTH_LONG).show();
-                    }
+//        // Realiza o Logout do usuário.
+////        firebaseAuth.signOut();
+////        Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(
+////                new ResultCallback<Status>() {
+////                    @Override
+////                    public void onResult(@NonNull Status status) {
+////                        Toast.makeText(AuthActivity.this, "Logout Successfully", Toast.LENGTH_LONG).show();
+////                    }
+////
+////                });
+////
+////        // Depois do logout o botão não fica mais visível.
+////        SignOutButton.setVisibility(View.GONE);
+////        ImagemUrl.setVisibility(View.GONE);
+////
+////        // Depois do logout os componentes email e a senha recebem o valor nulo.
+////        LoginUserName.setText(null);
+////        LoginUserEmail.setText(null);
+////
+////        // Depois do logout o botão de login volta a ficar visível.
+////        signInButton.setVisibility(View.VISIBLE);
 
-                });
-
-        // Depois do logout o botão não fica mais visível.
-        SignOutButton.setVisibility(View.GONE);
-        ImagemUrl.setVisibility(View.GONE);
-
-        // Depois do logout os componentes email e a senha recebem o valor nulo.
-        LoginUserName.setText(null);
-        LoginUserEmail.setText(null);
-
-        // Depois do logout o botão de login volta a ficar visível.
-        signInButton.setVisibility(View.VISIBLE);
+        startActivity(new Intent(getBaseContext(), CurriculoActivity.class));
     }
 
     //Classe que converte a imagemWeb em Bitmap
@@ -240,5 +254,11 @@ public class AuthActivity extends AppCompatActivity {
         }
     }
 
+
+    public void criarUsuario(String nome, String email){
+
+
+
+    }
 
 }

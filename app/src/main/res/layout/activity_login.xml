@@ -32,6 +32,14 @@
         android:layout_height="wrap_content"
         android:text="LOGIN" />
 
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="27dp"
+        android:layout_alignParentLeft="true" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

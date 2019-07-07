@@ -9,8 +9,17 @@ public class Usuario {
         private String sobrenome;
         private String aniversario;
         private String sexo;
+        private String telefone;
 
         public Usuario() {
+        }
+
+        public  String getTelefone(){
+            return telefone;
+        }
+
+        public void setTelefone(){
+             this.telefone = telefone ;
         }
 
         public String getId() {

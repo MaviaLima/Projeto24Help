@@ -16,7 +16,7 @@ public class SplashActivity extends AppCompatActivity implements Runnable {
         handler.postDelayed(this, 3000);
     }
     public void run(){
-        startActivity(new Intent(this, LoginActivity.class));
+        startActivity(new Intent(this, AuthActivity.class));
         finish();
     }
 
